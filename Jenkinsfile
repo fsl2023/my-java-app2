@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('checkout') {
             steps {
-                git url: 'https://github.com/fsl2023/my-java-app.git', credentialsId: 'fsl2023'
+                git url: 'https://github.com/fsl2023/my-java-app.git2', credentialsId: 'fsl2023'
             }
         }
         stage ('test & coverage') {
