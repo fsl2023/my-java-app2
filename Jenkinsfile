@@ -11,7 +11,7 @@ pipeline {
         }
         stage ('test & coverage') {
             steps {
-                sh ' mvn clean test jacoco:report'
+                sh 'mvn clean verify'  // FIXED: Use verify phase
             }
             post {
                 always {
@@ -34,12 +34,12 @@ pipeline {
         }
         stage('build java app') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'  // Optional: Skip tests
             }
         }
         stage('docker build') {
             steps {
-                sh "docker build -t fsl2023/java-ci-app:v1"
+                sh "docker build -t fsl2023/java-ci-app:v1 ."  // FIXED: Added context
             }
         }
     }
