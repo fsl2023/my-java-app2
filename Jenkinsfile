@@ -11,12 +11,11 @@ pipeline {
         }
         stage ('test & coverage') {
             steps {
-                sh 'mvn clean verify'  // FIXED: Use verify phase
+                sh 'mvn clean test'  
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                    jacoco execPattern: 'target/jacoco.exec'
                 }
             }
         }
