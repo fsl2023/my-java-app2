@@ -11,7 +11,7 @@ pipeline {
         }
         stage ('test & coverage') {
             steps {
-                sh ' mvn test jacoco:report'
+                sh ' mvn clean test jacoco:report'
             }
             post {
                 always {
