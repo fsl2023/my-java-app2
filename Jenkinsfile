@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SONAR_PROJECT-KEY = "java-ci-app"
+        SONAR_PROJECT_KEY = "java-ci-app"
     }
     stages {
         stage ('checkout') {
