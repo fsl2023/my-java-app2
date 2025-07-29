@@ -11,11 +11,12 @@ pipeline {
         }
         stage ('test & coverage') {
             steps {
-                sh 'mvn clean test'  
+                sh ' mvn clean test jacoco:report'
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
+                    jacoco execPattern: 'target/jacoco.exec'
                 }
             }
         }
@@ -33,12 +34,13 @@ pipeline {
         }
         stage('build java app') {
             steps {
-                sh 'mvn clean package -DskipTests'  // Optional: Skip tests
+                sh 'mvn clean package'
             }
         }
         stage('docker build') {
             steps {
-                sh "docker build -t fsl2023/java-ci-app:v1 ."  // FIXED: Added context
+                sh "docker build -t fsl2023/java-ci-app:v1"
+                sh "docker run -d fsl2023/java-ci-app:v1"
             }
         }
     }
