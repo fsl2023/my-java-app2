@@ -16,13 +16,7 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-                    recordCoverage(
-                        tools: [
-                            jacoco(
-                                execPattern: 'target/jacoco.exec'
-                            )
-                        ]
-                    )
+                    recordCoverage(tools: [jacoco(execPattern: 'target/jacoco.exec')])
                 }
             }
         }
